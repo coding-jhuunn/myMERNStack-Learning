@@ -13,13 +13,7 @@ app.get("/", (req, res) => {
   return res.status(234).send("Welcome to MErn ");
 });
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST, PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
+app.use(cors());
 
 app.use("/books", bookRoutes);
 

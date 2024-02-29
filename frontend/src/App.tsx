@@ -1,24 +1,20 @@
-import { useEffect, useState } from "react";
-
-interface booksObject {
-  title: string;
-  author: string;
-  publishYear: number;
-}
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import CreateBook from "./pages/CreateBooks";
+import EditBook from "./pages/EditBook";
+import DeleteBook from "./pages/DeleteBooks";
+import ShowBook from "./pages/ShowBook";
 
 const App = () => {
-  const [books, SetBooks] = useState<booksObject>();
-
-  useEffect(() => {
-    fetch("http://localhost:5555/books")
-      .then((res) => res.json())
-      .then((data) => {
-        SetBooks(data);
-        console.log(books);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  return <div></div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />}></Route>
+      <Route path="/books/create" element={<CreateBook />}></Route>
+      <Route path="/books/details/:id" element={<ShowBook />}></Route>
+      <Route path="/books/edit/:id" element={<EditBook />}></Route>
+      <Route path="/books/delete/:id" element={<DeleteBook />}></Route>
+    </Routes>
+  );
 };
 
 export default App;
